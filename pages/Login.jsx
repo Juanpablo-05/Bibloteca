@@ -56,7 +56,7 @@ function Login() {
       setError("Error de servidor");
       Swal.fire({
         title: "Error al iniciar sesión!",
-        text: `Algo salio mal ${error}...`,
+        text: `Algo salio mal, ${error}...`,
         icon: "warning",
         confirmButtonText: "Ok",
       });

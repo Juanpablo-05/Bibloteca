@@ -15,10 +15,10 @@ const EditForm = () => {
   const navigate = useNavigate()
 
   //api
-  const url = `http://localhost:3001/register`;
+  const url = `http://localhost:3001/edit/${formData.identificacion}`;
 
   const options = {
-    method: "POST",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
@@ -31,7 +31,7 @@ const EditForm = () => {
         .then( response => {
           if (!response.ok) {
             Swal.fire({
-              title: "Error Al Registar Al Usuario!",
+              title: "Error Al Editar El Usuario!",
               text: "Por favor, verifique los datos.",
               icon: "warning",
               confirmButtonText: "Ok",
@@ -42,12 +42,20 @@ const EditForm = () => {
         .then( data => {
           console.log("Usuario editado exitosamente:", data);
           Swal.fire({
-            title: "Usuario Registrado Con Exito!",
-            icon: "warning",
+            title: "Usuario Editado Con Exito!",
+            icon: "success",
             confirmButtonText: "Ok",
           });
         })
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        title: "Error Al Editar El Usuario!",
+        text: `Algo Salio Mal, ${error}`,
+        icon: "warning",
+        confirmButtonText: "Ok",
+      });
+    }
   };
 
   //funciones
@@ -71,7 +79,7 @@ const EditForm = () => {
   return (
     <main className="main-register">
       <div className="register-container">
-        <h2>Registro</h2>
+        <h2>Editar Usuario</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-container">
             <label htmlFor="identificacion">Identificación:</label>
@@ -114,7 +122,7 @@ const EditForm = () => {
             />
           </div>
           <button type="submit" className="btn-regristrar">
-            Registrar
+            Editar
           </button>
         </form>
       </div>

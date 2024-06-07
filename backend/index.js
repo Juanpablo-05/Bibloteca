@@ -8,6 +8,7 @@ const port = 3001;
 
 app.use(cors())
 
+//conexion a la base de datos
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -26,6 +27,22 @@ connection.connect((err) => {
 // Middleware para analizar el cuerpo de las solicitudes
 app.use(bodyParser.json());
 
+//ruta para tomar todos los usuarios
+app.get('/usuarios', (req, res) => {
+  connection.query(
+    'SELECT * FROM usuarios',
+    (error, results, fields) => {
+      if(error){
+        console.log('error al obtener los usuarios', error);
+        res.status(500).send('error en el servidor')
+      }
+
+      if(!error){
+        res.status(200).json(results);
+      }
+    }
+  )
+})
 // Ruta para la autenticación de usuarios
 app.post('/login', (req, res) => {
   const { usuario, clave } = req.body;
@@ -50,7 +67,7 @@ app.post('/login', (req, res) => {
 });
 
 // Ruta para la creación de usuarios
-app.post('/register', (req, res) => {
+app.post('/crear', (req, res) => {
   const { identificacion, nombre, usuario, clave } = req.body;
 
   connection.query(
@@ -72,25 +89,8 @@ app.post('/register', (req, res) => {
   )
 })
 
-//ruta para tomar todos los usuarios
-app.get('/usuarios', (req, res) => {
-  connection.query(
-    'SELECT * FROM usuarios',
-    (error, results, fields) => {
-      if(error){
-        console.log('error al obtener los usuarios', error);
-        res.status(500).send('error en el servidor')
-      }
-
-      if(!error){
-        res.status(200).json(results);
-      }
-    }
-  )
-})
-
 //ruta para editar usuario 
-app.put('/usuario/:id', (req, res) => {
+app.put('/editar/:id', (req, res) => {
   const userId = req.params.id;
   const { identificacion, nombre, usuario, clave } = req.body;
 
@@ -111,6 +111,27 @@ app.put('/usuario/:id', (req, res) => {
   );
 });
 
+//ruta para eliminar usuario
+
+app.delete('/eliminar/:id', (req, res) => {
+  const userId = req.params.id;
+
+  connection.query(
+    'DELETE FROM usuarios WHERE identificacion =?',
+    [userId],
+    (error, results, fields) => {
+      if(error){
+        console.log('Error al eliminar el usuario:', error);
+        res.status(500).send('Error en el servidor');
+        return;
+      }
+
+      if(!error){
+        res.status(200).json({ message: 'Usuario eliminado exitosamente' });
+      }
+    }
+  );
+});
 
 // Iniciar el servidor
 app.listen(port, () => {

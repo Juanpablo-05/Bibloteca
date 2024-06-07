@@ -8,20 +8,30 @@ import {
 import Login from '../pages/Login.jsx';
 import Home from '../pages/Home.jsx';
 import RegisterForm from '../pages/RegisterForm.jsx';
+import EditFomr from '../pages/EditForm.jsx';
+import ErrorPage from '../pages/ErrorPage.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Login/>,
+    errorElement:<ErrorPage/>
   },
   {
     path:"/home",
-    element: <Home/>
+    element: <Home/>,
+    errorElement:<ErrorPage/>
   },
   {
     path:"/register",
-    element: <RegisterForm/>
+    element: <RegisterForm/>,
+    errorElement:<ErrorPage/>
   },
+  {
+    path:"/edit",
+    element: <EditFomr/>,
+    errorElement:<ErrorPage/>
+  }
 ]);
 
 

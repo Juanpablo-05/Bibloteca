@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { FaTrash } from "react-icons/fa6";
+import DeleteForm from "./DeleteForm";
 
 function Home() {
      
@@ -34,7 +34,7 @@ function Home() {
               <span className="barra"></span>
             </li>
             <li>
-              <Link to={"/#"} className="li-items">
+              <Link to={"/edit"} className="li-items">
                 Editar Usuario
               </Link>
               <span className="barra"></span>
@@ -70,7 +70,7 @@ function Home() {
                       </Link>
                     </td> */}
                     <td>
-                      <button className="btn-eliminar"><FaTrash /></button>
+                      <DeleteForm id={item.identificacion}/>
                     </td>
                 </tr>
             )
