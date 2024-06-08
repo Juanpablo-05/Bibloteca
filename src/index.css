@@ -193,6 +193,25 @@ table th {
   transition: .3s ease;
 }
 
+.opc{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+
+}
+
+.btn-eliminar{
+  background: transparent;
+}
+
+.btn-edit{
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* -------------------------------REGISTRO------------------------------------ */
 
 .main-register{

@@ -65,7 +65,6 @@ app.post('/login', (req, res) => {
     }
   );
 });
-
 // Ruta para la creación de usuarios
 app.post('/crear', (req, res) => {
   const { identificacion, nombre, usuario, clave } = req.body;
@@ -88,7 +87,6 @@ app.post('/crear', (req, res) => {
     }
   )
 })
-
 //ruta para editar usuario 
 app.put('/editar/:id', (req, res) => {
   const userId = req.params.id;

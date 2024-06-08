@@ -15,7 +15,7 @@ const RegisterForm = () => {
   const navigate = useNavigate()
 
   //api
-  const url = `http://localhost:3001/register`;
+  const url = `http://localhost:3001/crear`;
 
   const options = {
     method: "POST",

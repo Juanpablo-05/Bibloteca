@@ -15,7 +15,7 @@ const EditForm = () => {
   const navigate = useNavigate()
 
   //api
-  const url = `http://localhost:3001/edit/${formData.identificacion}`;
+  const url = `http://localhost:3001/editar/${formData.identificacion}`;
 
   const options = {
     method: "PUT",
