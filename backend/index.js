@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { router as userRouter } from './router/user/index.js';
 import { router as libroRouter } from './router/libro/index.js';
+import { router as prestamoRouter } from './router/prestamos/index.js';
 
 const app = express();
 const port = 3001;
@@ -14,7 +15,8 @@ app.use(bodyParser.json());
 
 // Rutas
 app.use('/usuario', userRouter);
-app.use('/libro', libroRouter);
+app.use('/libros', libroRouter);
+app.use('/prestamos', prestamoRouter)
 
 // Iniciar el servidor
 app.listen(port, () => {

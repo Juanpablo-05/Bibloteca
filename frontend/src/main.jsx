@@ -14,6 +14,8 @@ import ErrorPage from '../pages/user/ErrorPage.jsx';
 import HomeBook from '../pages/libro/HomeBook.jsx';
 import EditFormBook from '../pages/libro/EditFormBook.jsx';
 import RegisterFormBook from '../pages/libro/RegisterFormBook.jsx';
+import HomePrestamo from '../pages/prestamos/HomePrestamo.jsx';
+import CreatePrestamo from '../pages/prestamos/CreatePrestamo.jsx';
 
 //rutas front
 const router = createBrowserRouter([
@@ -28,29 +30,39 @@ const router = createBrowserRouter([
     errorElement:<ErrorPage/>
   },
   {
-    path:"/home/libros",
-    element: <HomeBook/>,
+    path:"/edit/usuario/:id",
+    element: <EditFomr/>,
     errorElement:<ErrorPage/>
-  }
-  ,
+  },
   {
     path:"/register/usuario",
     element: <RegisterForm/>,
     errorElement:<ErrorPage/>
   },
   {
+    path:"/home/libros",
+    element: <HomeBook/>,
+    errorElement:<ErrorPage/>
+  }
+  ,
+  {
     path:"/register/libro",
     element: <RegisterFormBook/>,
     errorElement:<ErrorPage/>
   },
   {
-    path:"/edit/usuario/:id",
-    element: <EditFomr/>,
+    path:"/edit/libro/:id",
+    element: <EditFormBook/>,
     errorElement:<ErrorPage/>
   },
   {
-    path:"/edit/libro/:id",
-    element: <EditFormBook/>,
+    path: "/home/prestamos",
+    element: <HomePrestamo/>,
+    errorElement:<ErrorPage/>
+  },
+  {
+    path:"/register/prestamo",
+    element: <CreatePrestamo/>,
     errorElement:<ErrorPage/>
   }
 ]);

@@ -1,10 +1,12 @@
 // router/libro/index.js
 import { Router } from 'express';
-import { addBook } from './controllers/addBook.js';
-import { getBooks } from './controllers/getBooks.js';
-import { updateBook } from './controllers/updateBook.js';
-import { deleteBook } from './controllers/deleteBook.js';
-import { getEditBook } from './controllers/getBookEdit.js';
+import {
+    getBooks,
+    getEditBook,
+    addBook,
+    updateBook,
+    deleteBook,
+} from './controllers/LibroController.js'
 
 const router = Router();
 
