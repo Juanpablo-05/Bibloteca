@@ -13,7 +13,7 @@ import {
 const router = Router();
 
 router.get('/', getUsers);
-router.get('/v/:id', getUserEdit)
+router.get('/u/:id', getUserEdit)
 router.post('/login', loginUser);
 router.post('/register', register);
 router.put('/:id', updateUser);

@@ -13,7 +13,7 @@ const RegisterFormBook = () => {
   const navigate = useNavigate()
 
   //api
-  const url = `http://localhost:3001/libro/add`;
+  const url = `http://localhost:3001/libros`;
 
   const options = {
     method: "POST",
@@ -90,7 +90,7 @@ const RegisterFormBook = () => {
               onChange={handleChange}
             />
           </div>
-          <button type="submit" className="btn-regristrar">
+          <button type="submit" className="btn-registrar">
             Registrar
           </button>
         </form>

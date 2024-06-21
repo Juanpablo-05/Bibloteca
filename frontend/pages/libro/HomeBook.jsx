@@ -4,13 +4,15 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { HiMiniPencilSquare } from "react-icons/hi2";
 import DeleteBook from "./DeleteBook";
+import Nav from '../../components/Nav'
+import ButtonRegister from '../../components/ButtonRegister'
 
 
 function HomeBook() {
   //estados
   const [books, setBooks] = useState([]);
   //api
-  const url = "http://localhost:3001/libro";
+  const url = "http://localhost:3001/libros";
 
   const fetchUsers = async (url) => {
     try {
@@ -35,20 +37,16 @@ function HomeBook() {
   return (
     <main className="main-home">
       <header className="header-home">
-        <nav className="nav-home">
-          <ul className="nav__ul">
-            <li>
-              <Link to={"/register/libro"} className="li-items">
-                Registrar Libro
-              </Link>
-              <span className="barra"></span>
-            </li>
-          </ul>
-        </nav>
+        <Nav/>
       </header>
 
       <section className="table-container">
-        <h2>Lista de Usuarios</h2>
+
+        <div className="container-register-btn">
+          <ButtonRegister link={'/register/libro'} name={'Libros'}/>
+        </div>
+
+        <h2 className="title">Lista de Usuarios</h2>
         <table>
           <thead>
             <tr>

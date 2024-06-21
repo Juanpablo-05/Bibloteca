@@ -15,9 +15,9 @@ function EditFormBook() {
   });
 
   //api
-  const bookUrl = `http://localhost:3001/libro/l/${id}`;
+  const bookUrl = `http://localhost:3001/libros/l/${id}`;
 
-  const editUrl = `http://localhost:3001/libro/${id}`;
+  const editUrl = `http://localhost:3001/libros/${id}`;
 
   useEffect(() => {
     fetchUserData();
@@ -109,7 +109,7 @@ function EditFormBook() {
               onChange={handleChange}
             />
           </div>
-          <button type="submit" className="btn-regristrar">
+          <button type="submit" className="btn-registrar">
             Editar
           </button>
         </form>

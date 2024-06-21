@@ -7,6 +7,7 @@ import { IoEye } from "react-icons/io5";
 import { IoEyeOff } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { FaKey } from "react-icons/fa6";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 function Login() {
   //Estados
@@ -15,6 +16,7 @@ function Login() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   //url api
   const urlLogin = "http://localhost:3001/usuario/login";
@@ -40,7 +42,8 @@ function Login() {
           confirmButtonText: "Ok",
         }).then((result) => {
           if (result.isConfirmed) {
-            navigate("/home");
+            login();
+            navigate("/home/usuarios");
           }
         });
       }

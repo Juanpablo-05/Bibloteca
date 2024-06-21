@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import DeleteForm from "./DeleteForm";
 import { HiMiniPencilSquare } from "react-icons/hi2";
+import Nav from "../../components/Nav";
+import ButtonRegister from '../../components/ButtonRegister'
 
 
 function HomeUser() {
@@ -35,20 +37,16 @@ function HomeUser() {
   return (
     <main className="main-home">
       <header className="header-home">
-        <nav className="nav-home">
-          <ul className="nav__ul">
-            <li>
-              <Link to={"/register/usuario"} className="li-items">
-                Registrar Usuario
-              </Link>
-              <span className="barra"></span>
-            </li>
-          </ul>
-        </nav>
+        <Nav/>
       </header>
 
       <section className="table-container">
-        <h2>Lista de Usuarios</h2>
+
+        <div className="container-register-btn">
+          <ButtonRegister link={'/register/usuario'} name={'Usuario'}/>
+        </div>
+
+        <h2 className="title">Lista de Usuarios</h2>
         <table>
           <thead>
             <tr>

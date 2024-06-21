@@ -63,7 +63,7 @@ const RegisterForm = () => {
     e.preventDefault();
     console.log("Datos enviados:", formData);
     apiRegister();
-    navigate('/home')
+    navigate('/home/usuarios')
 
   };
 
@@ -113,7 +113,7 @@ const RegisterForm = () => {
               onChange={handleChange}
             />
           </div>
-          <button type="submit" className="btn-regristrar">
+          <button type="submit" className="btn-registrar">
             Registrar
           </button>
         </form>

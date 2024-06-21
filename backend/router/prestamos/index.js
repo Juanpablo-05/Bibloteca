@@ -10,7 +10,7 @@ import {
 const router = Router();
 
 router.get('/', getAllPrestamos)
-router.get('/:id', getPrestamo)
+router.get('/p/:id', getPrestamo)
 router.post('/', createPrestamo)
 router.put('/:id', updatePrestamo)
 router.delete('/:id', deletePrestamo)

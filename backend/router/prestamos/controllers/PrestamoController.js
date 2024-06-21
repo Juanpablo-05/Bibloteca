@@ -19,12 +19,15 @@ export const getPrestamo = (req, res) => {
   const { id } = req.params;
   connection.query('SELECT * FROM prestamo_libro WHERE id =?', [id], (error, results) => {
     if (error) {
-      console.log('Error al obtener el prestamo', error);
+      console.log(err);
       res.status(500).send('Error en el servidor');
-      return;
+    } else {
+      if (results.length > 0) {
+        res.status(200).json(results[0]); // Envía el primer resultado como JSON
+      } else {
+        res.status(404).json({ message: 'prestamo no encontrado' });
+      }
     }
-  
-    res.status(200).json(results);
   });
 }
 

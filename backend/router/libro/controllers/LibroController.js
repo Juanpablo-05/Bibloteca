@@ -26,18 +26,16 @@ export const getEditBook = (req, res) =>{
         'SELECT * FROM libros WHERE id =?', 
         [id], 
         (err, result) => {
-        if(err){
-            console.log(err)
-            res.status(500).json({
-                message: 'Error en la consulta'
-            })
-            return
-        }
-        else{
-            res.status(200).json(result)
-            return
-            
-        }
+          if (err) {
+            console.log(err);
+            res.status(500).send('Error en el servidor');
+          } else {
+            if (result.length > 0) {
+              res.status(200).json(result[0]); // Envía el primer resultado como JSON
+            } else {
+              res.status(404).json({ message: 'Libro no encontrado' });
+            }
+          }
     })
 }
 

@@ -45,11 +45,11 @@ export const register = (req, res) => {
 //editar
 export const updateUser = (req, res) => {
     const userId = req.params.id;
-    const { id, nombre, usuario, clave } = req.body;
+    const { nombre, usuario, clave } = req.body;
   
     connection.query(
-      'UPDATE usuarios SET id = ?, nombre = ?, usuario = ?, clave = ? WHERE id = ?',
-      [id, nombre, usuario, clave, userId],
+      'UPDATE usuarios SET nombre = ?, usuario = ?, clave = ? WHERE id = ?',
+      [nombre, usuario, clave, userId],
       (error) => {
         if (error) {
           console.log('Error al editar el usuario:', error);
@@ -61,6 +61,26 @@ export const updateUser = (req, res) => {
       }
     );
 };
+
+//obtener un unico usuario
+export const getUserEdit = (req, res) => {
+    const id = req.params.id;
+    connection.query("SELECT * FROM usuarios WHERE id =?", 
+      [id], 
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send('Error en el servidor');
+        } else {
+          if (result.length > 0) {
+            res.status(200).json(result[0]); // Envía el primer resultado como JSON
+          } else {
+            res.status(404).json({ message: 'Usuario no encontrado' });
+          }
+        }
+        
+    })
+}
 
 //obtener usuario
 export const getUsers = (req, res) => {
@@ -74,21 +94,6 @@ export const getUsers = (req, res) => {
       res.status(200).json(results);
     });
 };
-  
-//obtener un unico usuario
-export const getUserEdit = (req, res) => {
-    const id = req.params.id;
-    connection.query("SELECT * FROM usuarios WHERE id =?", 
-      [id], 
-      (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send(err);
-      } else {
-        res.status(200).send(result);
-      }
-    })
-}
 
 //eliminar
 export const deleteUser = (req, res) => {

@@ -17,7 +17,7 @@ export default function DeleteBook({ id, onDelete }) {
         confirmButtonText: "Si, Eliminar!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const response = await fetch(`http://localhost:3001/libro/${id}`, {
+          const response = await fetch(`http://localhost:3001/libros/${id}`, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",

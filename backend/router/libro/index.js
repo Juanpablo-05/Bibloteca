@@ -12,7 +12,7 @@ const router = Router();
 
 router.get('/', getBooks);
 router.get('/l/:id', getEditBook);
-router.post('/add', addBook);
+router.post('/', addBook);
 router.put('/:id', updateBook);
 router.delete('/:id', deleteBook);
 

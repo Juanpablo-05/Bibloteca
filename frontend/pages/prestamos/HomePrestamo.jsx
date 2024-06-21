@@ -3,6 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { HiMiniPencilSquare } from "react-icons/hi2";
+import Nav from '../../components/Nav'
+import ButtonRegister from "../../components/ButtonRegister";
+import DeletePrestamo from "./DeletePrestamo";
 
 
 function HomePrestamo() {
@@ -35,20 +38,17 @@ function HomePrestamo() {
   return (
     <main className="main-home">
       <header className="header-home">
-        <nav className="nav-home">
-          <ul className="nav__ul">
-            <li>
-              <Link to={"/register/prestamo"} className="li-items">
-                Registrar prestamo
-              </Link>
-              <span className="barra"></span>
-            </li>
-          </ul>
-        </nav>
+        <Nav/>
       </header>
 
       <section className="table-container">
-        <h2>Lista De Prestamos</h2>
+
+        <div className="container-register-btn">
+          <ButtonRegister link={'/register/prestamo'} name={'Prestamo'}/>
+        </div>
+
+        <h2 className="title">Lista De Prestamos</h2>
+
         <table>
           <thead>
             <tr>
@@ -70,15 +70,16 @@ function HomePrestamo() {
                 <td>{item.Fecha_Devolucion === null ? 'sin devolver' 
                 : new Date(item.Fecha_Devolucion).toLocaleDateString()}</td>
                 <td className="opc">
-                   {/* <DeleteBook id={item.id} onDelete={handleDelete} /> 
-                   <Link to={`/edit/libro/${item.id}`} className="btn-edit">
+                   <DeletePrestamo id={item.id} onDelete={handleDelete} />
+                   <Link to={`/edit/prestamo/${item.id}`} className="btn-edit">
                     <HiMiniPencilSquare />
-                  </Link> */}
+                  </Link>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+
       </section>
     </main>
   );

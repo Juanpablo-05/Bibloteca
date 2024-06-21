@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { IoEye } from "react-icons/io5";
+import { IoEyeOff } from "react-icons/io5";
 
 const EditForm = () => {
   // Estados
   const [formData, setFormData] = useState({
-    id: "",
     nombre: "",
     usuario: "",
     clave: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   //hooks react router dom
   const { id } = useParams();
   const navigate = useNavigate();
 
   //api
-  const userUrl = `http://localhost:3001/usuario/v/${id}`;
+  const userUrl = `http://localhost:3001/usuario/u/${id}`;
 
   const editUrl = `http://localhost:3001/usuario/${id}`;
 
@@ -72,7 +75,7 @@ const EditForm = () => {
         icon: "success",
         confirmButtonText: "Ok",
       });
-      navigate('/home');
+      navigate("/home/usuarios");
     } catch (error) {
       console.error("Error al editar el usuario:", error);
       Swal.fire({
@@ -91,17 +94,6 @@ const EditForm = () => {
         <h2>Editar Usuario</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-container">
-            <label htmlFor="id">Identificación:</label>
-            <input
-              type="text"
-              id="id"
-              name="id"
-              value={formData.id}
-              onChange={handleChange}
-              readOnly 
-            />
-          </div>
-          <div className="input-container">
             <label htmlFor="nombre">Nombre:</label>
             <input
               type="text"
@@ -109,6 +101,7 @@ const EditForm = () => {
               name="nombre"
               value={formData.nombre}
               onChange={handleChange}
+              required
             />
           </div>
           <div className="input-container">
@@ -119,19 +112,32 @@ const EditForm = () => {
               name="usuario"
               value={formData.usuario}
               onChange={handleChange}
+              required
             />
           </div>
           <div className="input-container">
             <label htmlFor="clave">Contraseña:</label>
-            <input
-              type="password"
-              id="clave"
-              name="clave"
-              value={formData.clave}
-              onChange={handleChange}
-            />
+            <div className="password">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="clave"
+                name="clave"
+                value={formData.clave}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                className="show-password-button"
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
+              >
+                {showPassword ? <IoEyeOff /> : <IoEye />}
+              </button>
+            </div>
           </div>
-          <button type="submit" className="btn-regristrar">
+          <button type="submit" className="btn-registrar">
             Editar
           </button>
         </form>

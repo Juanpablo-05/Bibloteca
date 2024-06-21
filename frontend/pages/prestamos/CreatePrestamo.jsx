@@ -1,21 +1,24 @@
 //Importaciones
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const CreatePrestamo = () => {
   //Estados
-  const [prestamos, setPrestamos] = useState({
+  const [ prestamos, setPrestamos ] = useState({
     Id_UsuFK: "",
     Id_LibroFK: "",
     Fecha_prestamo: "",
-    Fecha_Devolucion: "" || "" || null ,
+    Fecha_Devolucion: "" || null ,
   });
+
+  const [ libros, setLibors ] = useState([]);
 
   const navigate = useNavigate()
 
   //api
   const url = `http://localhost:3001/prestamos`;
+  const urlLibros = `http://localhost:3001/libros`
 
   const options = {
     method: "POST",
@@ -57,6 +60,16 @@ const CreatePrestamo = () => {
     }
   };
 
+  const apiLibros = async (url) => {
+    fetch(urlLibros)
+      .then( res => res.json() )
+      .then( data => setLibors(data) )
+  }
+
+  useEffect(() => {
+    apiLibros(urlLibros);
+  }, []);
+
   //funciones
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,18 +103,26 @@ const CreatePrestamo = () => {
               name="Id_UsuFK"
               value={prestamos.Id_UsuFK}
               onChange={handleChange}
+              required
             />
           </div>
 
           <div className="input-container">
             <label htmlFor="Id_LibroFK">Id Libro:</label>
-            <input
-              type="text"
+            <select
               id="Id_LibroFK"
               name="Id_LibroFK"
               value={prestamos.Id_LibroFK}
               onChange={handleChange}
-            />
+              required
+            >
+              <option value="" disabled>Seleccione un libro</option>
+              {libros.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.nombre}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="input-container">
@@ -112,6 +133,7 @@ const CreatePrestamo = () => {
               name="Fecha_prestamo"
               value={prestamos.Fecha_prestamo}
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -126,7 +148,7 @@ const CreatePrestamo = () => {
             />
           </div>
 
-          <button type="submit" className="btn-regristrar">
+          <button type="submit" className="btn-registrar">
             Registrar
           </button>
         </form>
