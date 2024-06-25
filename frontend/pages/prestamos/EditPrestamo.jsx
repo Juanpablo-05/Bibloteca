@@ -101,7 +101,7 @@ function EditPrestamo() {
   return (
     <main className="main-register">
       <div className="register-container">
-        <h2>Editar Prestamo</h2>
+        <h2 className="title-edit">Editar Prestamo</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-container">
             <label htmlFor="Id_UsuFK">Id Usuario:</label>

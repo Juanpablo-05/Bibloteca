@@ -13,12 +13,14 @@ const CreatePrestamo = () => {
   });
 
   const [ libros, setLibors ] = useState([]);
+  const [ usuarios, setUsuarios ] = useState([]);
 
   const navigate = useNavigate()
 
   //api
   const url = `http://localhost:3001/prestamos`;
   const urlLibros = `http://localhost:3001/libros`
+  const urlUsuario = 'http://localhost:3001/usuario'
 
   const options = {
     method: "POST",
@@ -28,6 +30,7 @@ const CreatePrestamo = () => {
     body: JSON.stringify(prestamos),
   };
 
+  //funciones
   const apiRegister = async () => {
     try {
       await fetch(url, options)
@@ -66,11 +69,19 @@ const CreatePrestamo = () => {
       .then( data => setLibors(data) )
   }
 
-  useEffect(() => {
-    apiLibros(urlLibros);
-  }, []);
+  const apiUser = async (url) => {
+    try {
+      
+      const response = await fetch(url)
+      const data = await response.json()
+      setUsuarios(data)
+      console.log(usuarios)
 
-  //funciones
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(name + ': ' + value);
@@ -88,6 +99,12 @@ const CreatePrestamo = () => {
 
   };
 
+  //useEffect
+  useEffect(() => {
+    apiLibros(urlLibros);
+    apiUser(urlUsuario)
+  }, []);
+
   //vista
   return (
     <main className="main-register">
@@ -97,14 +114,22 @@ const CreatePrestamo = () => {
         
           <div className="input-container">
             <label htmlFor="Id_UsuFK">Id usuario:</label>
-            <input
-              type="text"
+            <select
               id="Id_UsuFK"
               name="Id_UsuFK"
               value={prestamos.Id_UsuFK}
               onChange={handleChange}
               required
-            />
+            >
+              <option>Seleccione un usuario</option>
+              {
+                usuarios.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.nombre}
+                  </option>
+                ))
+              }
+            </select>
           </div>
 
           <div className="input-container">

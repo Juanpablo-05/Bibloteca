@@ -87,7 +87,7 @@ function EditFormBook() {
   return (
     <main className="main-register">
       <div className="register-container">
-        <h2>Editar Libro</h2>
+        <h2 className="title-edit">Editar Libro</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-container">
             <label htmlFor="nombre">Nombre:</label>

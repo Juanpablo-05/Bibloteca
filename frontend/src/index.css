@@ -6,6 +6,11 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
+body{
+  background: url('../public/fondo7.jpg') no-repeat;
+  background-size: cover;
+}
 /* --------------------LOGIN------------------- */
 
 .main-login{
@@ -107,7 +112,7 @@ h2{
 }
 
 .nav-home{
-  background: #ff9dd3;
+  background: #6b6869;
   width: 25%;
   padding: 10px;
   border-radius: 15px;
@@ -137,13 +142,13 @@ h2{
 }
 
 .li-items:hover{
-  color: #48284f;
+  color: #aaa;
 }
 
 .barra{
   width: 0%;
   height: 2px;
-  background: linear-gradient(35deg, #48284f,#703765);
+  background: linear-gradient(35deg, #bcb9bd,#948e92);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -161,8 +166,8 @@ h2{
   margin: 0 auto;
 }
 
-.title{
-  color: #000;
+.title, .title-edit{
+  color: #fff;
   margin: 15px 0;
   text-align: center;
 }
@@ -170,11 +175,14 @@ h2{
 table {
   width: 100%;
   border-collapse: collapse;
+  backdrop-filter: blur(40px);
+  padding: 5px;
+  color: #fff;
 }
 
 table th, td {
   padding: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   text-align: center
 }
 
